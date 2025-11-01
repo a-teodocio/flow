@@ -3,22 +3,21 @@ import useWords from "./useWords";
 import useTimer from "./useTimer";
 import useTypings from "./useTypings";
 import { countErrors } from "../utils/helpers";
-import { START_STATE, RUN_STATE, DONE_STATE, WORDS_MODE, TIMER_MODE, DEFAULT_TIME_SECS } from "../constants";
+import { START_STATE, RUN_STATE, DONE_STATE, WORDS_MODE, TIMER_MODE } from "../constants";
 
 export type State = typeof START_STATE | typeof RUN_STATE | typeof DONE_STATE;
 export type TypingMode = typeof WORDS_MODE | typeof TIMER_MODE;
 
 const useTypingTest = () => {
     const [state, setState] = useState<State>(START_STATE);
-    const [typingMode, setTypingMode] = useState<TypingMode>(TIMER_MODE);
-    const [initTime, setInitTime] = useState(DEFAULT_TIME_SECS);
+    const [currentMode, setCurrentMode] = useState<TypingMode>(TIMER_MODE);
     const {words, wordCount, updateWords, updateWordCount} = useWords();
-    const isTimerMode = typingMode === TIMER_MODE;
+    const isTimerMode = currentMode === TIMER_MODE;
     const {typed, cursor, clearTyped, resetTotalCharsTyped, totalCharsTyped} = useTypings(state !== DONE_STATE);
     const [errors, setErrors] = useState(0);
     const isStarting = state === START_STATE && cursor > 0;
     const areAllWordsTyped = cursor === words.length;
-    const {time, startTimer, resetTimer} = useTimer(initTime, typingMode === TIMER_MODE, areAllWordsTyped);
+    const {time, startTimer, resetTimer, updateTimerAmount, initTime } = useTimer(currentMode === TIMER_MODE, areAllWordsTyped);
 
     const calculateErrors = useCallback(() => {
         const wordsReached = words.substring(0, cursor);
@@ -40,7 +39,7 @@ const useTypingTest = () => {
                 setState(DONE_STATE);
                 calculateErrors();
             }
-    }, [time, isTimerMode, areAllWordsTyped, typingMode, calculateErrors]);
+    }, [time, isTimerMode, areAllWordsTyped, currentMode, calculateErrors]);
 
     useEffect(() => { // generate new words (for time mode)
         if(isTimerMode && areAllWordsTyped) {
@@ -69,15 +68,10 @@ const useTypingTest = () => {
     }, [clearTyped, updateWords, resetTimer, resetTotalCharsTyped]);
 
     const changeMode = useCallback((newMode: TypingMode) => {
-        setTypingMode(newMode);
+        setCurrentMode(newMode);
     }, []);
 
     useEffect(() => {
-        if(isTimerMode) {
-            setInitTime(DEFAULT_TIME_SECS);
-        } else {
-            setInitTime(0);
-        }
         resetTimer();
         resetTotalCharsTyped();
         setState(START_STATE);
@@ -88,7 +82,7 @@ const useTypingTest = () => {
         wordCount,
         isTimerMode,
         clearTyped,
-        typingMode,
+        currentMode,
         updateWords,
         setErrors,
         resetTimer,
@@ -112,7 +106,7 @@ const useTypingTest = () => {
 
     return { 
         state,
-        typingMode,
+        currentMode,
         wordCount,
         words, 
         time, 
@@ -122,7 +116,8 @@ const useTypingTest = () => {
         totalCharsTyped,
         restart,
         changeMode,
-        changeWordCount: updateWordCount
+        changeWordCount: updateWordCount,
+        updateTimerAmount
     };
 };
 

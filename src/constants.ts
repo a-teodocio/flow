@@ -11,6 +11,7 @@ const WORDS_MODE = "words";
 
 // all options for word mode
 const WORD_MODE_OPTIONS = [10, 25, 50];
+const TIME_MODE_OPTIONS = [15, 30, 60, 120];
 
 export {
     DEFAULT_WORD_COUNT,
@@ -20,5 +21,6 @@ export {
     DONE_STATE,
     TIMER_MODE,
     WORDS_MODE,
-    WORD_MODE_OPTIONS
+    WORD_MODE_OPTIONS,
+    TIME_MODE_OPTIONS
 }
