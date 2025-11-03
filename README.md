@@ -17,7 +17,7 @@ In *words* mode, k = Time elapsed in minutes until all words are typed
 ## Features in progress
 - Adding different typing modes
   - Words mode (completed)
-  - Timer mode (in progress)  
+  - Timer mode (completed)  
 - The ability to apply themes
 
 ## For devs
