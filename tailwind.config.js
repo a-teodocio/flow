@@ -6,9 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.amber,
-        error: colors.red
-      }
+        'theme-bg': 'var(--background)',
+        'theme-text': 'var(--text)',
+        'theme-accent': 'var(--accent)',
+        'theme-card': 'var(--card)',
+        'theme-card-hover': 'var(--cardHover)'
+      },
     },
   },
   plugins: [],

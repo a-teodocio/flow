@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        --background: #0066cc;
+        --text: #ff8800;
+        --accent: #ffffff;
+        --card: rgba(255, 255, 255, 0.1);
+        --cardHover: rgba(255, 255, 255, 0.2);
+    }
+
     body {
-        @apply min-h-screen bg-slate-800 grid place-items-center font-mono tracking-wider px-4;
+        @apply min-h-screen bg-theme-bg text-theme-text grid place-items-center font-mono tracking-wider px-4;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 }
