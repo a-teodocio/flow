@@ -9,19 +9,21 @@ import { DONE_STATE, TIMER_MODE } from "./constants";
 import ModeSelector from "./components/ModeSelector";
 
 function App() {
-  const { state, typingMode, wordCount, words, time, initTime, typed, errors, totalCharsTyped, restart, changeMode, changeWordCount } = useTest();
+  const { state, currentMode, wordCount, words, time, initTime, typed, errors, totalCharsTyped, restart, changeMode, changeWordCount, updateTimerAmount } = useTest();
   const isDone = state === DONE_STATE;
-  const isTimerMode = typingMode === TIMER_MODE;
+  const isTimerMode = currentMode === TIMER_MODE;
 
   return (
     <>
       <Header/>
       <ModeSelector 
         timeLeft={time}
+        initTime={initTime}
         changeMode={changeMode}
-        currentMode={typingMode}
+        currentMode={currentMode}
         changeWordCount={changeWordCount}
         currentWordCount={wordCount}
+        changeTimerAmount={updateTimerAmount}
       />
       <WordsContainer 
         wordsGenerated={words}

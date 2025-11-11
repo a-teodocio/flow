@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DEFAULT_TIME_SECS } from "../constants";
 
-const useTimer = (initTime: number, isTimerMode: boolean, areAllWordsTyped: boolean) => {
+const useTimer = (isTimerMode: boolean, areAllWordsTyped: boolean) => {
+    const [initTime, setInitTime] = useState(DEFAULT_TIME_SECS);
     const [time, setTime] = useState(initTime);
     const intervalRef = useRef<NodeJS.Timer | null>(null);
 
@@ -27,7 +29,21 @@ const useTimer = (initTime: number, isTimerMode: boolean, areAllWordsTyped: bool
         }
     }, [time, isTimerMode, areAllWordsTyped, intervalRef]);
 
-    return { time, startTimer, resetTimer };
+    const updateTimerAmount = useCallback((newAmount: number) => {
+        resetTimer();
+        setInitTime(newAmount);
+        setTime(newAmount);
+    }, [resetTimer]);
+
+    useEffect(() => {
+        if(isTimerMode) {
+            setInitTime(DEFAULT_TIME_SECS);
+        } else {
+            setInitTime(0);
+        }
+    }, [isTimerMode]);
+
+    return { time, startTimer, resetTimer, updateTimerAmount, initTime };
 };
 
 export default useTimer;
