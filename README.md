@@ -5,13 +5,16 @@
 
 ## Typing Test Modes
 Words mode: Type a finite set of words.
+
 Timer mode: Type as many words as you can until the timer runs out.
 
 ## Result calculations
 **Accuracy**: [(Number of characters typed correctly) / (Total number of characters typed)] * 100
 
-**WPM**: [(Number of characters typed correctly) / 5] / **k**  
+**WPM**: [(Number of characters typed correctly) / 5] / **k**
+
 In *timer* mode, k = Initial time in minutes
+
 In *words* mode, k = Time elapsed in minutes until all words are typed
 
 ## Features in progress
