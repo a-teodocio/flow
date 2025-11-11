@@ -17,11 +17,11 @@ In *timer* mode, k = Initial time in minutes
 
 In *words* mode, k = Time elapsed in minutes until all words are typed
 
-## Features in progress
+## Features
 - Adding different typing modes
   - Words mode (completed)
   - Timer mode (completed)  
-- The ability to apply themes
+- The ability to apply themes (in progress)
 
 ## For devs
 In the project directory, you can run: `npm install` and then `npm start`
