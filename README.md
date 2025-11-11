@@ -1,7 +1,7 @@
 # Flow
 
 ## Description
-[Flow](https://aivee-teodocio.github.io/flow/) is a typing test tool to help improve your typing speed and accuracy.
+[Flow](https://a-teodocio.github.io/flow/) is a typing test tool to help improve your typing speed and accuracy.
 
 ## Typing Test Modes
 Words mode: Type a finite set of words.
