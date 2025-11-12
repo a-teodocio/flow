@@ -7,10 +7,9 @@ module.exports = {
     extend: {
       colors: {
         'theme-bg': 'var(--background)',
-        'theme-text': 'var(--text)',
-        'theme-accent': 'var(--accent)',
-        'theme-card': 'var(--card)',
-        'theme-card-hover': 'var(--cardHover)'
+        'theme-primary': 'var(--primary)',
+        'theme-error': 'var(--error)',
+        'theme-secondary': 'var(--secondary)'
       },
     },
   },

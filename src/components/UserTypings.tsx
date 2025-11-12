@@ -38,9 +38,9 @@ const Character = (
     const isRight = actual === expected;
 
     const className = cn({
-        "text-primary-400": !isSpace && isRight,
-        "text-error-600": !isSpace && !isRight,
-        "bg-error-500/50": isSpace && !isRight
+        "text-theme-primary": !isSpace && isRight,
+        "text-theme-error": !isSpace && !isRight,
+        "bg-theme-error": isSpace && !isRight
     });
 
     return <span className={className}>{expected}</span>;
